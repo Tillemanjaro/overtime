@@ -34,7 +34,7 @@ def labeled_bar_chart_stacked(df, title, xlabel, ylabel, colors):
                     ha='center',
                     va='center',
                     fontsize=8,
-                    color="black"   # Changed to black for better visibility
+                    color="black"
                 )
         bottom += values
     ax.set_xticks(indices)
@@ -48,9 +48,13 @@ def labeled_bar_chart_stacked(df, title, xlabel, ylabel, colors):
 
 def app(requests_log, assignments_log):
     """
-    Manager Reports tab with only Volunteer vs Mandate data (no Requested).
+    Manager Reports tab with Volunteer vs Mandate data.
     """
     st.header("Manager Reports")
+    
+    # Ensure Date column is datetime
+    if assignments_log["Date"].dtype == 'O':
+        assignments_log["Date"] = pd.to_datetime(assignments_log["Date"])
     
     # Date range filters
     col1, col2 = st.columns(2)
@@ -199,7 +203,7 @@ def app(requests_log, assignments_log):
     # PDF REPORT
     # ------------------------------------------------------------
     if not filtered_assignments.empty:
-        buffer = BytesIO()
+        pdf_buffer = BytesIO()
         fig_all = plt.figure(figsize=(12, 9))
         gs = fig_all.add_gridspec(3, 2, hspace=0.7, wspace=0.5)
         
@@ -222,9 +226,7 @@ def app(requests_log, assignments_log):
         ax1.set_xticks(x_vals)
         ax1.set_xticklabels(df_block.index, rotation=20, ha='right')
         ax1.set_title("Assignments by Block")
-        # Move legend outside
         ax1.legend(loc="upper left", bbox_to_anchor=(1.05, 1))
-        # Label each bar
         for container in ax1.containers:
             ax1.bar_label(container, padding=3, color="black")
         
@@ -236,7 +238,6 @@ def app(requests_log, assignments_log):
         for col, col_color in zip(df_line_pdf.columns, [color_volunteer, color_mandate]):
             vals = df_line_pdf[col].values
             bars = ax2.bar(idx_line, vals, width=0.5, bottom=bottom_line, label=col, color=col_color)
-            # Label each stacked segment
             for i, bar in enumerate(bars):
                 if vals[i] > 0:
                     ax2.text(
@@ -264,7 +265,6 @@ def app(requests_log, assignments_log):
         for col, col_color in zip(df_pos_pdf.columns, [color_volunteer, color_mandate]):
             vals = df_pos_pdf[col].values
             bars = ax3.bar(idx_pos, vals, width=0.5, bottom=bottom_pos, label=col, color=col_color)
-            # Label each stacked segment
             for i, bar in enumerate(bars):
                 if vals[i] > 0:
                     ax3.text(
@@ -292,8 +292,6 @@ def app(requests_log, assignments_log):
         ax4.set_title("Volunteer vs Mandate")
         
         plt.tight_layout()
-        # Save PDF
-        pdf_buffer = BytesIO()
         with PdfPages(pdf_buffer) as pdf:
             pdf.savefig(fig_all)
             d = pdf.infodict()

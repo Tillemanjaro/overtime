@@ -1,10 +1,8 @@
+# coordinator_portal.py
 import streamlit as st
 import pandas as pd
-import backend  # Assumes backend.py contains save_assignment() and remove_request()
+import backend  # Assumes backend.py contains save_assignment(), remove_request(), and get_employee_data()
 from datetime import datetime
-
-# Path to your employee data CSV file (expects columns: Name, Hire Date, Position)
-EMPLOYEE_DATA_PATH = "C:/CodingProjects/overtime/employee_data.csv"
 
 # Predefined shift blocks and lines
 shift_blocks = [
@@ -18,8 +16,8 @@ shift_blocks = [
 ALL_LINES = ["L21", "L22", "L23", "L24", "L25", "L31", "L32", "L33", "L35", "L36"]
 
 def load_employee_data():
-    """Loads employee data from CSV; expects columns: Name, Hire Date, Position."""
-    return pd.read_csv(EMPLOYEE_DATA_PATH, parse_dates=["Hire Date"])
+    """Loads employee data from the database using backend."""
+    return backend.get_employee_data()
 
 def initialize_volunteer_queue():
     """
@@ -53,7 +51,7 @@ def rotate_queue(queue, name):
 def auto_rerun():
     try:
         st.experimental_rerun()
-    except AttributeError:
+    except Exception:
         st.markdown("<meta http-equiv='refresh' content='2'>", unsafe_allow_html=True)
 
 def app(requests_log):
@@ -64,7 +62,11 @@ def app(requests_log):
     # ------------------------------
     st.subheader("Approve Volunteer Requests")
     vol_date = st.date_input("Select Date for Requests", datetime.today(), key="vol_date")
-    requests_filtered = requests_log[requests_log["Date"] == pd.to_datetime(vol_date)]
+    
+    # Ensure the "Date" column is in datetime format before filtering
+    requests_log["Date"] = pd.to_datetime(requests_log["Date"])
+    # Filter rows where the date matches the selected date (compare date parts)
+    requests_filtered = requests_log[requests_log["Date"].dt.date == vol_date]
     
     initialize_volunteer_queue()
     
@@ -88,7 +90,7 @@ def app(requests_log):
                         assignment_type="Volunteer",
                         override=False
                     )
-                    # Remove the approved request from the requests_log file
+                    # Remove the approved request from the database or the log
                     backend.remove_request(candidate_name, row["Date"], row["Block"])
                     st.success(f"{candidate_name} assigned as Volunteer to {chosen_line} - {chosen_position}.")
                     rotate_queue(st.session_state.volunteer_queue, candidate_name)
@@ -104,7 +106,7 @@ def app(requests_log):
     
     initialize_mandate_queue()
     
-    # Coordinator selects a Position to filter mandate candidates (from employee_data.csv)
+    # Coordinator selects a Position to filter mandate candidates using database data
     employee_data = load_employee_data()
     unique_positions = sorted(employee_data["Position"].unique())
     chosen_position_filter = st.selectbox("Select Position for Mandate", unique_positions, key="mandate_position_filter")

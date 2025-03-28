@@ -1,77 +1,30 @@
+# backend.py
 import pandas as pd
-from datetime import datetime
-import os
+from database import get_connection
 
-def load_data():
+def get_employee_data():
     """
-    Loads the requests and assignments data.
-    Expects:
-      - requests_log.csv with columns: Name, Date, Request Time, Block, etc.
-      - assignments_log.csv with columns: Name, Date, Assignment Time, Block, Line, Position, Type, Override
+    Query and return all data from the employees table as a DataFrame.
     """
-    # Use errors='ignore' if file might not exist yet
-    try:
-        req = pd.read_csv("requests_log.csv", parse_dates=["Date", "Request Time"])
-    except Exception:
-        req = pd.DataFrame()
-    try:
-        assign = pd.read_csv("assignments_log.csv", parse_dates=["Date", "Assignment Time"])
-    except Exception:
-        assign = pd.DataFrame()
-    return req, assign
+    conn = get_connection()
+    df = pd.read_sql_query("SELECT * FROM employees", conn)
+    conn.close()
+    return df
 
-def save_assignment(name, date, block, line, position, assignment_type, override=False):
+def get_assignments():
     """
-    Saves an assignment to assignments_log.csv.
-    Parameters:
-      name: Employee name
-      date: Assignment date
-      block: Shift block
-      line: Assigned line
-      position: Position assigned
-      assignment_type: "Volunteer" or "Mandate"
-      override: Boolean flag for override
+    Query and return all data from the assignments table as a DataFrame.
     """
-    entry = pd.DataFrame({
-        "Name": [name],
-        "Date": [date],
-        "Block": [block],
-        "Line": [line],
-        "Position": [position],
-        "Assignment Time": [datetime.now()],
-        "Assigned By": ["Coordinator"],
-        "Type": [assignment_type],
-        "Override": [override]
-    })
-    entry.to_csv("assignments_log.csv", mode='a', header=not os.path.exists("assignments_log.csv"), index=False)
+    conn = get_connection()
+    df = pd.read_sql_query("SELECT * FROM assignments", conn)
+    conn.close()
+    return df
 
-def save_request(name, date, blocks):
+def get_requests():
     """
-    Saves a new overtime request.
-    Parameters:
-      name: Employee name
-      date: Date of the request
-      blocks: List of requested blocks
+    Query and return all data from the requests table as a DataFrame.
     """
-    new_entries = pd.DataFrame({
-        "Name": [name] * len(blocks),
-        "Date": [date] * len(blocks),
-        "Block": blocks,
-        "Request Time": [datetime.now()] * len(blocks)
-    })
-    new_entries.to_csv("requests_log.csv", mode='a', header=not os.path.exists("requests_log.csv"), index=False)
-
-def remove_request(name, date, block):
-    """
-    Removes an approved request from requests_log.csv.
-    Parameters:
-      name: Employee name
-      date: Date of the request
-      block: Requested block to remove
-    """
-    try:
-        df = pd.read_csv("requests_log.csv", parse_dates=["Date", "Request Time"])
-    except Exception:
-        return
-    df = df[~((df["Name"] == name) & (df["Date"] == pd.to_datetime(date)) & (df["Block"] == block))]
-    df.to_csv("requests_log.csv", index=False)
+    conn = get_connection()
+    df = pd.read_sql_query("SELECT * FROM requests", conn)
+    conn.close()
+    return df
