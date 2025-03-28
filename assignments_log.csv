@@ -1,0 +1,38 @@
+Name,Date,Block,Line,Position,Assignment Time,Assigned By,Type,Override
+Cell,2025-03-25,7:00 AM - 11:00 AM,L33,Case Packer,2025-03-27 22:52:33.233689,Coordinator,Mandate,True
+Goten,2025-03-21,7:00 AM - 11:00 AM,L25,Cheese Harp,2025-03-27 22:52:33.233696,Coordinator,Volunteer,False
+Goten,2025-03-21,7:00 AM - 11:00 AM,L25,Placer,2025-03-27 22:52:33.233701,Coordinator,Mandate,False
+Vegeta,2025-03-22,11:00 PM - 3:00 AM,L21,Back Cart Operator,2025-03-27 22:52:33.233706,Coordinator,Volunteer,True
+Cell,2025-03-23,11:00 PM - 3:00 AM,L21,Cheese Harp,2025-03-27 22:52:33.233712,Coordinator,Mandate,True
+Trunks,2025-03-21,3:00 AM - 7:00 AM,L35,Placer,2025-03-27 22:52:33.233717,Coordinator,Mandate,False
+Android 18,2025-03-25,3:00 PM - 7:00 PM,L23,Placer,2025-03-27 22:52:33.233722,Coordinator,Volunteer,True
+Krillin,2025-03-27,7:00 AM - 11:00 AM,L31,Cheese Harp,2025-03-27 22:52:33.233729,Coordinator,Volunteer,False
+Piccolo,2025-03-27,3:00 AM - 7:00 AM,L33,Back Cart Operator,2025-03-27 22:52:33.233734,Coordinator,Volunteer,False
+Vegeta,2025-03-21,7:00 PM - 11:00 PM,L31,Case Packer,2025-03-27 22:52:33.233739,Coordinator,Volunteer,True
+Goten,2025-03-25,11:00 PM - 3:00 AM,L33,Denester,2025-03-27 22:52:33.233745,Coordinator,Mandate,False
+Android 17,2025-03-20,11:00 AM - 3:00 PM,L36,Back Cart Operator,2025-03-27 22:52:33.233752,Coordinator,Volunteer,True
+Tien Shinhan,2025-03-26,11:00 AM - 3:00 PM,L32,Case Packer,2025-03-27 22:52:33.233761,Coordinator,Mandate,True
+Piccolo,2025-03-21,11:00 AM - 3:00 PM,L23,Denester,2025-03-27 22:52:33.233768,Coordinator,Volunteer,True
+Goten,2025-03-23,11:00 PM - 3:00 AM,L23,Case Packer,2025-03-27 22:52:33.233776,Coordinator,Mandate,True
+Goku,2025-03-25,3:00 AM - 7:00 AM,L35,Placer,2025-03-27 22:52:33.233783,Coordinator,Mandate,False
+Goten,2025-03-22,3:00 PM - 7:00 PM,L32,Cheese Harp,2025-03-27 22:52:33.233788,Coordinator,Volunteer,True
+Goten,2025-03-26,7:00 PM - 11:00 PM,L22,Back Cart Operator,2025-03-27 22:52:33.233793,Coordinator,Mandate,True
+Trunks,2025-03-21,7:00 AM - 11:00 AM,L33,Cheese Harp,2025-03-27 22:52:33.233806,Coordinator,Mandate,True
+Bulma,2025-03-26,3:00 PM - 7:00 PM,L21,Denester,2025-03-27 22:52:33.233810,Coordinator,Volunteer,False
+Android 17,2025-03-20,7:00 PM - 11:00 PM,L35,Case Packer,2025-03-27 22:52:33.233815,Coordinator,Volunteer,False
+Android 17,2025-03-23,3:00 AM - 7:00 AM,L25,Case Packer,2025-03-27 22:52:33.233820,Coordinator,Mandate,True
+Goten,2025-03-23,11:00 PM - 3:00 AM,L21,Case Packer,2025-03-27 22:52:33.233825,Coordinator,Mandate,False
+Vegeta,2025-03-23,7:00 AM - 11:00 AM,L21,Case Packer,2025-03-27 22:52:33.233830,Coordinator,Volunteer,True
+Goten,2025-03-24,7:00 AM - 11:00 AM,L23,Case Packer,2025-03-27 22:52:33.233835,Coordinator,Volunteer,True
+Vegeta,2025-03-20,3:00 PM - 7:00 PM,L24,Placer,2025-03-27 22:52:33.233839,Coordinator,Volunteer,False
+Bulma,2025-03-22,7:00 PM - 11:00 PM,L31,Case Packer,2025-03-27 22:52:33.233845,Coordinator,Mandate,True
+Yamcha,2025-03-25,7:00 PM - 11:00 PM,L35,Case Packer,2025-03-27 22:52:33.233849,Coordinator,Mandate,True
+Android 17,2025-03-21,3:00 AM - 7:00 AM,L21,Denester,2025-03-27 22:52:33.233854,Coordinator,Mandate,False
+Frieza,2025-03-25,11:00 PM - 3:00 AM,L32,Denester,2025-03-27 22:52:33.233859,Coordinator,Mandate,True
+Vegeta,2025-03-27,7:00 AM - 11:00 AM,L21,Placer,2025-03-27 22:49:38.811299,Coordinator,Mandate,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Case Packer,2025-03-27 23:28:20.047264,Coordinator,Volunteer,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Case Packer,2025-03-27 23:30:04.553500,Coordinator,Volunteer,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Case Packer,2025-03-27 23:30:10.468814,Coordinator,Volunteer,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Cheese Harp,2025-03-27 23:34:34.293330,Coordinator,Volunteer,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Case Packer,2025-03-27 23:34:54.045525,Coordinator,Volunteer,False
+Videl,2025-03-27,7:00 PM - 11:00 PM,L21,Operator,2025-03-27 23:37:43.883011,Coordinator,Volunteer,False
